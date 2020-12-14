@@ -1,0 +1,40 @@
+<div class="gradient-bg">
+
+  <div class="container pt-5">
+
+    <h1 class="font-weight-bold text-center my-5 text-white">All your added movies</h1>
+
+      <% if @movies.empty? %>
+        <p class="text-white text-center">You have no movies at the moment, go ahead and some here <span><%= link_to "add movie", root_path, class: "btn btn-info small-text text-white" %> </span></p>
+      <% else %>
+    <div class="container d-flex flex-column justify-content-center align-items-start">
+        <% @movies.each do |movie| %>
+          <div class="d-flex align-items-center mb-5">
+          <%= link_to movie_path(movie) do %>
+            <div class="bg-white shadow-sm p-3 movie-card">
+              <div class="d-flex align-items-center">
+                <div class="mr-5"><%= movie.title %></div>
+                <div class="ml-5"><%= movie.year %> </div>
+              </div>
+
+              <div class="small-text mt-3">See more information 🔦</div>
+            </div>
+          <% end %>
+          <div class="d-flex flex-column">
+            <%= link_to "Edit movie ⚙️", edit_movie_path(movie), class: "small-text mx-5 text-white my-2" %>
+
+            <%= link_to "Delete 🗑",
+                    movie_path(movie),
+                    method: :delete,
+                    class: "small-text mx-5 text-white my-2" %>
+          </div>
+          </div>
+        <% end %>
+
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+

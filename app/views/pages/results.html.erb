@@ -1,0 +1,19 @@
+<div class="cinema-bg">
+  <div class="container pt-5">
+    <h1 class="font-weight-bold text-center mt-5 mb-3 text-white">Top 5 results based on your search</h1>
+    <p class="text-center text-white">Select the one you'd like to add:</p>
+    <div class="d-flex flex-column justify-content-center">
+      <% @movies.each_with_index do |movie, i| %>
+        <div class="d-flex align-items-center">
+          <div class="text-white"> <%= i + 1 %>.</div>
+          <div class="bg-white p-3 my-3 mx-3 shadow-sm">
+            <%= movie["Title"] %>
+            <%= movie["Year"] %>
+          </div>
+          <%= link_to "Add movie 💾", movies_path(movie_id: movie["imdbID"]), class: "btn btn-info text-white small-text", method: :post %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
